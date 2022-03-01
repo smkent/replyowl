@@ -223,6 +223,26 @@ class ReplyCases:
         quote_attribution=("Earlier you wrote something like:"),
     )
 
+    NO_ATTRIBUTION = ReplyCaseParams(
+        id="no_attribution",
+        content="I'm taking credit for your email.",
+        quote_html="<b>Bacon ipsum</b> dolor amet capicola cupidatat.",
+        quote_text="Bacon ipsum dolor amet filet mignon in minim.",
+        expected_html=(
+            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "I'm taking credit for your email.<div><br/></div>"
+            '<blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
+            'border-left: 2px solid #aaa; border-radius: 8px;" type="cite">'
+            "<b>Bacon ipsum</b> dolor amet capicola cupidatat."
+            "</blockquote></body></html>"
+        ),
+        expected_text=(
+            "I'm taking credit for your email.\n\n----\n\n\n"
+            "> Bacon ipsum dolor amet filet mignon in minim."
+        ),
+        quote_attribution=None,
+    )
+
     @classmethod
     def compose_reply(
         cls,
@@ -244,6 +264,7 @@ class ReplyCases:
             cls.HTML_QUOTE_ONLY,
             cls.TEXT_QUOTE_ONLY,
             cls.NO_QUOTES,
+            cls.NO_ATTRIBUTION,
         ]:
             ids.append(reply_case.id)
             argvalues.append(
