@@ -41,6 +41,8 @@ class ReplyOwl:
         make_text: bool = True,
         make_html: bool = True,
     ) -> Tuple[Optional[str], Optional[str]]:
+        if not make_text and not make_html:
+            return (None, None)
         if quote_text and not quote_html:
             quote_html = quote_text.replace(self.linesep, "<br />")
         if quote_html and not quote_text:
