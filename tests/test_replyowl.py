@@ -19,7 +19,7 @@ def test_compose_reply(
     make_html: bool,
 ) -> None:
     owl = ReplyOwl()
-    text, html = owl.compose_reply(
+    composed_replies = owl.compose_reply(
         content=content,
         quote_attribution=quote_attribution,
         quote_text=quote_text,
@@ -27,5 +27,7 @@ def test_compose_reply(
         make_text=make_text,
         make_html=make_html,
     )
-    assert html == (expected_html if make_html else None)
-    assert text == (expected_text if make_text else None)
+    assert composed_replies == (
+        (expected_text if make_text else None),
+        (expected_html if make_html else None),
+    )
