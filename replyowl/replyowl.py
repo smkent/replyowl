@@ -3,34 +3,33 @@ from typing import Any, Optional, Tuple
 import html2text
 from bs4 import BeautifulSoup  # type: ignore
 
+BLOCKQUOTE_STYLE = " ".join(
+    [
+        "margin-left: 0.8ex;",
+        "padding-left: 2ex;",
+        "border-left: 2px solid #aaa;",
+        "border-radius: 8px;",
+    ]
+)
+BS_PARSER = "html.parser"
+HTML_TEMPLATE = (
+    "<!DOCTYPE html>\n" "<html><head><title></title></head><body>{html}</body>"
+)
+
 
 class ReplyOwl:
-    BLOCKQUOTE_STYLE = " ".join(
-        [
-            "margin-left: 0.8ex;",
-            "padding-left: 2ex;",
-            "border-left: 2px solid #aaa;",
-            "border-radius: 8px;",
-        ]
-    )
-    BS_PARSER = "html.parser"
-    HTML_TEMPLATE = (
-        "<!DOCTYPE html>\n"
-        "<html><head><title></title></head><body>{html}</body>"
-    )
-
     def __init__(
         self,
-        blockquote_style: Optional[str] = None,
-        bs_parser: Optional[str] = None,
-        html_template: Optional[str] = None,
+        blockquote_style: str = BLOCKQUOTE_STYLE,
+        bs_parser: str = BS_PARSER,
+        html_template: str = HTML_TEMPLATE,
         h2t: Optional[html2text.HTML2Text] = None,
         linesep: str = "\n",
     ) -> None:
-        self.blockquote_style = blockquote_style or self.BLOCKQUOTE_STYLE
-        self.bs_parser = bs_parser or self.BS_PARSER
+        self.blockquote_style = blockquote_style
+        self.bs_parser = bs_parser
         self.html2text = h2t or self._init_html2text()
-        self.html_template = html_template or self.HTML_TEMPLATE
+        self.html_template = html_template
         self.linesep = linesep
 
     def compose_reply(
