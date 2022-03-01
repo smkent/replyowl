@@ -68,9 +68,11 @@ class ReplyOwl:
     def _convert_html_to_text(self, html: str) -> str:
         soup = BeautifulSoup(html, self.bs_parser)
         # Replace links
-        for ahref in soup.find_all("a", href=True):
-            linkstr = f"{ahref.string} ({ahref['href']})"
-            ahref.replace_with(linkstr)
+        for a_tag in soup.find_all("a", href=True):
+            link_text = a_tag.text
+            link_target = a_tag["href"]
+            link_str = f"{link_text} ({link_target})"
+            a_tag.replace_with(link_str)
         text = self.html2text.handle(str(soup))
         text = text.replace(r"\-", "-")
         return text

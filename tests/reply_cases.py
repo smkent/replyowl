@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Iterable, List
+from typing import Any, Iterable, List, Optional
 
 
 @dataclass
@@ -19,11 +19,11 @@ class ReplyCase:
 class ReplyCaseParams:
     id: str
     content: str
-    quote_html: str
-    quote_text: str
+    quote_html: Optional[str]
+    quote_text: Optional[str]
     expected_html: str
     expected_text: str
-    quote_attribution: str
+    quote_attribution: Optional[str]
 
 
 class ReplyCases:
@@ -89,7 +89,7 @@ class ReplyCases:
     HTML_QUOTE_WITH_BODY_TAG_ONLY = ReplyCaseParams(
         id="html_quote_with_body_tag_only",
         content=(
-            "Waffles here with the following message:<br /><br />"
+            "ReplyOwl here with the following message:<br /><br />"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef"
@@ -102,7 +102,7 @@ class ReplyCases:
         expected_html=(
             "<!DOCTYPE html>\n\n"
             "<html><head><title></title></head><body>"
-            "Waffles here with the following message:<br/><br/>"
+            "ReplyOwl here with the following message:<br/><br/>"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef"
@@ -115,7 +115,7 @@ class ReplyCases:
             "</blockquote></body></html>"
         ),
         expected_text=(
-            "Waffles here with the following message:  \n  \n"
+            "ReplyOwl here with the following message:  \n  \n"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef\n\n"
@@ -127,6 +127,33 @@ class ReplyCases:
         quote_attribution=(
             "Four score and a few fortnights ago, someone opined:"
         ),
+    )
+
+    HTML_QUOTE_ONLY = ReplyCaseParams(
+        id="html_quote_only",
+        content=("Your original message only had <b>HTML</b>."),
+        quote_html=(
+            '<a href="https://baconipsum.com"><b>Bacon</b> ipsum</a> '
+            "dolor amet ex <i>spare ribs</i> duis aute."
+        ),
+        quote_text=None,
+        expected_html=(
+            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "Your original message only had <b>HTML</b>."
+            "<div>At midnight, the narwhal baconed:<br/>"
+            '</div><blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
+            'border-left: 2px solid #aaa; border-radius: 8px;" '
+            'type="cite"><a href="https://baconipsum.com">'
+            "<b>Bacon</b> ipsum</a> dolor amet ex <i>spare ribs</i> "
+            "duis aute.</blockquote></body></html>"
+        ),
+        expected_text=(
+            "Your original message only had **HTML**.\n\n----\n\n"
+            "At midnight, the narwhal baconed:\n\n"
+            "> Bacon ipsum (https://baconipsum.com) "
+            "dolor amet ex _spare ribs_ duis aute.\n> "
+        ),
+        quote_attribution=("At midnight, the narwhal baconed:"),
     )
 
     ALL_BLANK_INPUTS = ReplyCaseParams(
@@ -159,6 +186,7 @@ class ReplyCases:
         for reply_case in [
             cls.HTML_QUOTE_WITHOUT_BODY_TAG,
             cls.HTML_QUOTE_WITH_BODY_TAG_ONLY,
+            cls.HTML_QUOTE_ONLY,
             cls.ALL_BLANK_INPUTS,
         ]:
             ids.append(reply_case.id)
