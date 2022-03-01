@@ -1,13 +1,17 @@
 # replyowl: Email reply body generator for HTML and text in Python
 
+[![PyPI](https://img.shields.io/pypi/v/replyowl)][pypi]
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/replyowl)][pypi]
+[![Build](https://img.shields.io/github/checks-status/smkent/replyowl/master?label=build)][gh-actions]
+[![codecov](https://codecov.io/gh/smkent/replyowl/branch/master/graph/badge.svg)][codecov]
+[![GitHub stars](https://img.shields.io/github/stars/smkent/replyowl?style=social)][repo]
+
 [![replyowl][logo]](#)
 
 replyowl creates email bodies with quoted messages. Provide the original message
 and your reply message, and replyowl will combine them into a new message. The
 returned content can be used as the text and/or HTML body content of a new
 email.
-
-replyowl is in initial development.
 
 ## Installation
 
@@ -151,8 +155,12 @@ Prerequisites: [Poetry][poetry]
 Created from [smkent/cookie-python][cookie-python] using
 [cookiecutter][cookiecutter]
 
+[codecov]: https://codecov.io/gh/smkent/replyowl
 [cookie-python]: https://github.com/smkent/cookie-python
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[gh-actions]: https://github.com/smkent/replyowl/actions?query=branch%3Amaster
 [logo]: https://raw.github.com/smkent/replyowl/master/img/replyowl.png
 [poetry]: https://python-poetry.org/docs/#installation
+[pypi]: https://pypi.org/project/replyowl/
 [replyowl-pypi]: https://pypi.org/project/replyowl/
+[repo]: https://github.com/smkent/replyowl
