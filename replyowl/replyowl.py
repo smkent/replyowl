@@ -1,55 +1,36 @@
-import os
 from typing import Any, Optional, Tuple
 
 import html2text
 from bs4 import BeautifulSoup  # type: ignore
 
+BLOCKQUOTE_STYLE = " ".join(
+    [
+        "margin-left: 0.8ex;",
+        "padding-left: 2ex;",
+        "border-left: 2px solid #aaa;",
+        "border-radius: 8px;",
+    ]
+)
+BS_PARSER = "html.parser"
+HTML_TEMPLATE = (
+    "<!DOCTYPE html><html><head><title></title></head><body>{html}</body>"
+)
+
 
 class ReplyOwl:
-    BLOCKQUOTE_STYLE = " ".join(
-        [
-            "margin-left: 0.8ex;",
-            "padding-left: 2ex;",
-            "border-left: 2px solid #aaa;",
-            "border-radius: 8px;",
-        ]
-    )
-    BS_PARSER = "html.parser"
-    HTML_TEMPLATE = (
-        "<!DOCTYPE html>\n"
-        "<html><head><title></title></head><body>{html}</body>"
-    )
-
     def __init__(
         self,
-        blockquote_style: Optional[str] = None,
-        bs_parser: Optional[str] = None,
-        html_template: Optional[str] = None,
+        blockquote_style: str = BLOCKQUOTE_STYLE,
+        bs_parser: str = BS_PARSER,
+        html_template: str = HTML_TEMPLATE,
         h2t: Optional[html2text.HTML2Text] = None,
+        linesep: str = "\n",
     ) -> None:
-        self.blockquote_style = blockquote_style or self.BLOCKQUOTE_STYLE
-        self.bs_parser = bs_parser or self.BS_PARSER
-        self.html_template = html_template or self.HTML_TEMPLATE
-        self.html2text = h2t or self.init_html2text()
-
-    def init_html2text(self) -> html2text.HTML2Text:
-        h2t = html2text.HTML2Text()
-        h2t.ul_item_mark = "-"
-        h2t.body_width = 0
-        return h2t
-
-    def init_html(self, quote_html: Optional[str]) -> Any:
-        if quote_html:
-            soup = BeautifulSoup(quote_html, self.bs_parser)
-            if soup.body:
-                return soup
-            return BeautifulSoup(
-                self.html_template.replace("{html}", quote_html),
-                self.bs_parser,
-            )
-        return BeautifulSoup(
-            self.html_template.replace("{html}", ""), self.bs_parser
-        )
+        self.blockquote_style = blockquote_style
+        self.bs_parser = bs_parser
+        self.html2text = h2t or self._init_html2text()
+        self.html_template = html_template
+        self.linesep = linesep
 
     def compose_reply(
         self,
@@ -60,53 +41,99 @@ class ReplyOwl:
         make_text: bool = True,
         make_html: bool = True,
     ) -> Tuple[Optional[str], Optional[str]]:
-        soup = self.init_html(quote_html)
+        if not make_text and not make_html:
+            return (None, None)
+        if quote_text and not quote_html:
+            quote_html = quote_text.replace(self.linesep, "<br />")
+        if quote_html and not quote_text:
+            quote_text = self._convert_html_to_text(quote_html)
+        html: Optional[str] = None
+        text: Optional[str] = None
+        if make_html:
+            html = self._make_html_reply(
+                content, quote_html, quote_attribution
+            )
+        if make_text:
+            text = self._make_text_reply(
+                content, quote_text, quote_attribution
+            )
+        return text, html
 
+    def _init_html2text(self) -> html2text.HTML2Text:
+        h2t = html2text.HTML2Text()
+        h2t.ul_item_mark = "-"
+        h2t.body_width = 0
+        return h2t
+
+    def _convert_html_to_text(self, html: str) -> str:
+        soup = BeautifulSoup(html, self.bs_parser)
+        # Replace links
+        for a_tag in soup.find_all("a", href=True):
+            link_text = a_tag.text
+            link_target = a_tag["href"]
+            link_str = f"{link_text} ({link_target})"
+            if link_text.strip() == link_target:
+                link_str = link_text
+            a_tag.replace_with(link_str)
+        text = self.html2text.handle(str(soup))
+        text = text.replace(r"\-", "-")
+        return text
+
+    def _init_html(self, quote_html: str) -> Any:
+        soup = BeautifulSoup(quote_html, self.bs_parser)
+        if soup.body:
+            return soup
+        return BeautifulSoup(
+            self.html_template.replace("{html}", quote_html),
+            self.bs_parser,
+        )
+
+    def _make_html_reply(
+        self,
+        content: str,
+        quote_html: Optional[str],
+        quote_attribution: Optional[str],
+    ) -> str:
+        if not quote_html:
+            return str(
+                BeautifulSoup(
+                    self.html_template.replace("{html}", content),
+                    self.bs_parser,
+                )
+            )
+        soup = self._init_html(quote_html)
         tmpl = BeautifulSoup(content, self.bs_parser)
         bq = soup.new_tag(
             "blockquote", type="cite", style=self.blockquote_style
         )
-        soup.body.wrap(bq).wrap(soup.new_tag("body"))
+        soup.body.wrap(bq).wrap(soup.new_tag("body", **soup.body.attrs))
         soup.body.body.unwrap()
         new_div = soup.new_tag("div")
-        new_div.string = quote_attribution
+        new_div.string = quote_attribution or ""
         new_div.append(soup.new_tag("br"))
         bq.insert_before(new_div)
         new_div.insert_before(tmpl)
+        return str(soup)
 
-        rendert = self.make_text_reply(
-            content, quote_html, quote_text, quote_attribution
-        )
-        print(soup)
-        print(rendert)
-        return rendert, str(soup)
-
-    def make_text_reply(
+    def _make_text_reply(
         self,
         content: str,
-        html: Optional[str],
-        text: Optional[str],
-        reply_attribution: Optional[str],
+        quote_text: Optional[str],
+        quote_attribution: Optional[str],
     ) -> str:
-        if not html:
-            return ""
-        # Replace links
-        at = BeautifulSoup(content, self.bs_parser)
-        for ahref in at.find_all("a", href=True):
-            linkstr = f"{ahref.string} ({ahref['href']})"
-            ahref.replace_with(linkstr)
-
-        rendert = self.html2text.handle(str(at))
-        rendert = rendert.replace(r"\-", "-")
-        rendert += (
-            os.linesep
-            + "----"
-            + os.linesep * 2
-            + (reply_attribution or "")
-            + os.linesep * 2
-            + os.linesep.join(
-                [f"> {t}" for t in (text or str()).split(os.linesep)]
+        text = self._convert_html_to_text(content)
+        if quote_text:
+            text += (
+                self.linesep
+                + "----"
+                + self.linesep * 2
+                + (quote_attribution or "")
+                + self.linesep * 2
+                + self.linesep.join(
+                    [
+                        f"> {t}"
+                        for t in (quote_text or str()).split(self.linesep)
+                    ]
+                )
             )
-        )
-        rendert = rendert.replace(os.linesep * 3, os.linesep * 2)
-        return rendert
+        return text.replace(self.linesep * 3, self.linesep * 2)

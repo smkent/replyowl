@@ -6,17 +6,28 @@ from .reply_cases import ReplyCases
 
 
 @pytest.mark.parametrize(**ReplyCases.compose_reply().__dict__)
+@pytest.mark.parametrize("make_html", (True, False), ids=["html", "no_html"])
+@pytest.mark.parametrize("make_text", (True, False), ids=["text", "no_text"])
 def test_compose_reply(
-    reply_template: str,
-    received_html: str,
-    received_text: str,
+    content: str,
+    quote_html: str,
+    quote_text: str,
     expected_html: str,
     expected_text: str,
-    reply_attribution: str,
+    quote_attribution: str,
+    make_text: bool,
+    make_html: bool,
 ) -> None:
-    ro = ReplyOwl()
-    text, html = ro.compose_reply(
-        reply_template, reply_attribution, received_text, received_html
+    owl = ReplyOwl()
+    composed_replies = owl.compose_reply(
+        content=content,
+        quote_attribution=quote_attribution,
+        quote_text=quote_text,
+        quote_html=quote_html,
+        make_text=make_text,
+        make_html=make_html,
     )
-    assert text == expected_text
-    assert html == expected_html
+    assert composed_replies == (
+        (expected_text if make_text else None),
+        (expected_html if make_html else None),
+    )
