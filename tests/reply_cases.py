@@ -27,6 +27,19 @@ class ReplyCaseParams:
 
 
 class ReplyCases:
+    ALL_BLANK_INPUTS = ReplyCaseParams(
+        id="all_blank_inputs",
+        content="",
+        quote_html="",
+        quote_text="",
+        expected_html=(
+            "<!DOCTYPE html>\n\n"
+            "<html><head><title></title></head><body></body></html>"
+        ),
+        expected_text="\n",
+        quote_attribution="",
+    )
+
     HTML_QUOTE_WITHOUT_BODY_TAG = ReplyCaseParams(
         id="html_quote_without_body_tag",
         content=(
@@ -186,17 +199,28 @@ class ReplyCases:
         quote_attribution=("While a tree was falling in the woods, you said:"),
     )
 
-    ALL_BLANK_INPUTS = ReplyCaseParams(
-        id="all_blank_inputs",
-        content="",
-        quote_html="",
-        quote_text="",
-        expected_html=(
-            "<!DOCTYPE html>\n\n"
-            "<html><head><title></title></head><body></body></html>"
+    NO_QUOTES = ReplyCaseParams(
+        id="no_quotes",
+        content=(
+            "I got your message but you didn't have anything to say."
+            "<br /><br />"
+            "Check out this site: "
+            '<a href="https://example.com">https://example.com</a>'
         ),
-        expected_text="\n",
-        quote_attribution="",
+        quote_html=None,
+        quote_text=None,
+        expected_html=(
+            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "I got your message but you didn't have anything to say."
+            "<br/><br/>Check out this site: "
+            '<a href="https://example.com">https://example.com</a>'
+            "</body></html>"
+        ),
+        expected_text=(
+            "I got your message but you didn't have anything to say.  \n  \n"
+            "Check out this site: https://example.com (https://example.com)\n"
+        ),
+        quote_attribution=("Earlier you wrote something like:"),
     )
 
     @classmethod
@@ -214,11 +238,12 @@ class ReplyCases:
         ids: List[str] = []
         argvalues: List[Any] = []
         for reply_case in [
+            cls.ALL_BLANK_INPUTS,
             cls.HTML_QUOTE_WITHOUT_BODY_TAG,
             cls.HTML_QUOTE_WITH_BODY_TAG_ONLY,
             cls.HTML_QUOTE_ONLY,
             cls.TEXT_QUOTE_ONLY,
-            cls.ALL_BLANK_INPUTS,
+            cls.NO_QUOTES,
         ]:
             ids.append(reply_case.id)
             argvalues.append(
