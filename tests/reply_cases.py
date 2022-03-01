@@ -18,18 +18,18 @@ class ReplyCase:
 @dataclass
 class ReplyCaseParams:
     id: str
-    reply_template: str
-    received_html: str
-    received_text: str
+    content: str
+    quote_html: str
+    quote_text: str
     expected_html: str
     expected_text: str
-    reply_attribution: str
+    quote_attribution: str
 
 
 class ReplyCases:
     HTML_QUOTE_WITHOUT_BODY_TAG = ReplyCaseParams(
         id="html_quote_without_body_tag",
-        reply_template=(
+        content=(
             "The year is 199X. A meteorite has fallen in\n"
             '<b><a href="https://earthbound.fandom.com/wiki/Onett">'
             "Onett</a></b>.<br />\n"
@@ -41,7 +41,7 @@ class ReplyCases:
             "<li>Spiteful Crow</li>\n"
             "</ul>"
         ),
-        received_html=(
+        quote_html=(
             "<div><b>Pictures taken instantaneously!</b><br /></div>"
             "I'm a photographic <i>genius</i>, "
             "if I do say so myself!<br /></div>"
@@ -49,7 +49,7 @@ class ReplyCases:
             "<div>Look at the camera... Ready... "
             'Say, "fuzzy pickles."<br /></div>'
         ),
-        received_text=(
+        quote_text=(
             "Pictures taken instantaneously!\n\n"
             "I'm a photographic genius, if I do say so myself!\n\n"
             "Okay, get ready for an instant memory!\n\n"
@@ -83,22 +83,22 @@ class ReplyCases:
             "> Okay, get ready for an instant memory!\n> \n"
             '> Look at the camera... Ready... Say, "fuzzy pickles."'
         ),
-        reply_attribution=("At some point, the camera man appeared and said:"),
+        quote_attribution=("At some point, the camera man appeared and said:"),
     )
 
     HTML_QUOTE_WITH_BODY_TAG_ONLY = ReplyCaseParams(
         id="html_quote_with_body_tag_only",
-        reply_template=(
+        content=(
             "Waffles here with the following message:<br /><br />"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef"
         ),
-        received_html=(
+        quote_html=(
             "Come work for us. "
             "The compensation is in the <b>real world</b>."
         ),
-        received_text=(""),
+        quote_text=(""),
         expected_html=(
             "<!DOCTYPE html>\n\n"
             "<html><head><title></title></head><body>"
@@ -124,22 +124,22 @@ class ReplyCases:
             "> Come work for us. The compensation is in the **real world**.\n"
             "> "
         ),
-        reply_attribution=(
+        quote_attribution=(
             "Four score and a few fortnights ago, someone opined:"
         ),
     )
 
     ALL_BLANK_INPUTS = ReplyCaseParams(
         id="all_blank_inputs",
-        reply_template="",
-        received_html="",
-        received_text="",
+        content="",
+        quote_html="",
+        quote_text="",
         expected_html=(
             "<!DOCTYPE html>\n\n"
             "<html><head><title></title></head><body></body></html>"
         ),
         expected_text="\n",
-        reply_attribution="",
+        quote_attribution="",
     )
 
     @classmethod
@@ -147,12 +147,12 @@ class ReplyCases:
         cls,
     ) -> ParametrizeParams:
         argnames = [
-            "reply_template",
-            "received_html",
-            "received_text",
+            "content",
+            "quote_html",
+            "quote_text",
             "expected_html",
             "expected_text",
-            "reply_attribution",
+            "quote_attribution",
         ]
         ids: List[str] = []
         argvalues: List[Any] = []
@@ -164,12 +164,12 @@ class ReplyCases:
             ids.append(reply_case.id)
             argvalues.append(
                 [
-                    reply_case.reply_template,
-                    reply_case.received_html,
-                    reply_case.received_text,
+                    reply_case.content,
+                    reply_case.quote_html,
+                    reply_case.quote_text,
                     reply_case.expected_html,
                     reply_case.expected_text,
-                    reply_case.reply_attribution,
+                    reply_case.quote_attribution,
                 ]
             )
         return ParametrizeParams(
