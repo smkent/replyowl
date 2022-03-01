@@ -108,14 +108,12 @@ class ReplyCases:
             "in excepteur shankle adipisicing corned beef"
         ),
         quote_html=(
-            "Come work for us. "
-            "The compensation is in the <b>real world</b>."
+            "<body>Come work for us. "
+            "The compensation is in the <b>real world</b>.</body>"
         ),
         quote_text=(""),
         expected_html=(
-            "<!DOCTYPE html>\n"
-            "<html><head><title></title></head><body>"
-            "ReplyOwl here with the following message:<br/><br/>"
+            "<body>ReplyOwl here with the following message:<br/><br/>"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef"
@@ -125,7 +123,7 @@ class ReplyCases:
             'solid #aaa; border-radius: 8px;" type="cite">'
             "Come work for us. "
             "The compensation is in the <b>real world</b>."
-            "</blockquote></body></html>"
+            "</blockquote></body>"
         ),
         expected_text=(
             "ReplyOwl here with the following message:  \n  \n"
