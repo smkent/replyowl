@@ -89,24 +89,25 @@ from replyowl import ReplyOwl
 
 owl = ReplyOwl()
 text, html = owl.compose_reply(
-    content=(
-        'Check <a href="https://example.com/">this</a> out<br />'
-        'Or this: <a href="https://example.net/">https://example.net/</a>'
-    ),
+    content="Hello there",
     quote_attribution="You wrote:",
-    quote_text="Send me a URL",
-    quote_html="Send me a <i>URL</i>",
+    quote_text="Hi",
+    quote_html='<html><body class="sender_body"><b>Hi</b></body></html>',
 )
 
-print(text)
-# Check this (https://example.com/) out
-# Or this: https://example.net/
-#
-# ----
-#
-# You wrote:
-#
-# > Send me a URL
+print(html)  # (output formatted for readability)
+# <html>
+#   <body class="sender_body">
+#     Hello there
+#     <div>
+#     You wrote:<br/>
+#     </div>
+#     <blockquote style="margin-left: 0.8ex; padding-left: 2ex;
+#                        border-left: 2px solid #aaa; border-radius: 8px;" type="cite">
+#       <b>Hi</b>
+#     </blockquote>
+#   </body>
+# </html>
 ```
 
 
