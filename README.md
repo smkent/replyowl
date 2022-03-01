@@ -110,6 +110,33 @@ print(html)  # (output formatted for readability)
 # </html>
 ```
 
+A custom value can be provided for the `<blockquote>`'s `style` tag:
+```py
+from replyowl import ReplyOwl
+
+owl = ReplyOwl(blockquote_style="font-weight: bold;")
+text, html = owl.compose_reply(
+    text, html = owl.compose_reply(
+        content="Your quote is in bold",
+        quote_attribution="You wrote:",
+        quote_text="I'm going to be in bold when you reply",
+        quote_html="I'm going to be in bold when you reply",
+    )
+)
+
+print(html)  # (output formatted for readability)
+# <html>
+#   <body class="sender_body">
+#     Your quote is in bold
+#     <div>
+#     You wrote:<br/>
+#     </div>
+#     <blockquote style="font-weight: bold;" type="cite"
+#       I'm going to be in bold when you reply
+#     </blockquote>
+#   </body>
+# </html>
+```
 
 ## Development
 
