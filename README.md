@@ -155,8 +155,12 @@ Prerequisites: [Poetry][poetry]
 Created from [smkent/cookie-python][cookie-python] using
 [cookiecutter][cookiecutter]
 
+[codecov]: https://codecov.io/gh/smkent/replyowl
 [cookie-python]: https://github.com/smkent/cookie-python
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[gh-actions]: https://github.com/smkent/replyowl/actions?query=branch%3Amaster
 [logo]: https://raw.github.com/smkent/replyowl/master/img/replyowl.png
 [poetry]: https://python-poetry.org/docs/#installation
+[pypi]: https://pypi.org/project/replyowl/
 [replyowl-pypi]: https://pypi.org/project/replyowl/
+[repo]: https://github.com/smkent/replyowl
