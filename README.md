@@ -1,5 +1,7 @@
 # replyowl: Email reply body generator for HTML and text
 
+[![replyowl][logo]](#)
+
 replyowl is in initial development.
 
 ## Development
@@ -18,3 +20,4 @@ Created from [smkent/cookie-python][cookie-python] using
 [cookie-python]: https://github.com/smkent/cookie-python
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [poetry]: https://python-poetry.org/docs/#installation
+[logo]: https://raw.github.com/smkent/replyowl/master/img/replyowl.png
