@@ -27,9 +27,6 @@ def test_compose_reply(
         make_text=make_text,
         make_html=make_html,
     )
-    print()
-    print("TEXT", repr(composed_replies[0]))
-    print("HTML", repr(composed_replies[1]))
     assert composed_replies == (
         (expected_text if make_text else None),
         (expected_html if make_html else None),
