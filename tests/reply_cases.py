@@ -156,6 +156,36 @@ class ReplyCases:
         quote_attribution=("At midnight, the narwhal baconed:"),
     )
 
+    TEXT_QUOTE_ONLY = ReplyCaseParams(
+        id="text_quote_only",
+        content=("Your original message only had <b>plain text</b>."),
+        quote_html=None,
+        quote_text=(
+            "Bacon ipsum dolor amet cow dolore nostrud "
+            "strip steak pork belly kevin.\n\n"
+            "- bacon\n- ipsum\n\nhttps://example.net"
+        ),
+        expected_html=(
+            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "Your original message only had <b>plain text</b>."
+            "<div>While a tree was falling in the woods, you said:<br/>"
+            '</div><blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
+            'border-left: 2px solid #aaa; border-radius: 8px;" type="cite">'
+            "Bacon ipsum dolor amet cow dolore nostrud "
+            "strip steak pork belly kevin.<br/><br/>"
+            "- bacon<br/>- ipsum<br/><br/>"
+            "https://example.net</blockquote></body></html>"
+        ),
+        expected_text=(
+            "Your original message only had **plain text**.\n\n----\n\n"
+            "While a tree was falling in the woods, you said:\n\n"
+            "> Bacon ipsum dolor amet cow dolore nostrud "
+            "strip steak pork belly kevin.\n> \n"
+            "> - bacon\n> - ipsum\n> \n> https://example.net"
+        ),
+        quote_attribution=("While a tree was falling in the woods, you said:"),
+    )
+
     ALL_BLANK_INPUTS = ReplyCaseParams(
         id="all_blank_inputs",
         content="",
@@ -187,6 +217,7 @@ class ReplyCases:
             cls.HTML_QUOTE_WITHOUT_BODY_TAG,
             cls.HTML_QUOTE_WITH_BODY_TAG_ONLY,
             cls.HTML_QUOTE_ONLY,
+            cls.TEXT_QUOTE_ONLY,
             cls.ALL_BLANK_INPUTS,
         ]:
             ids.append(reply_case.id)
