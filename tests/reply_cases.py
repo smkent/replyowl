@@ -108,13 +108,13 @@ class ReplyCases:
             "in excepteur shankle adipisicing corned beef"
         ),
         quote_html=(
-            "<body>Come work for us. "
+            '<body class="custom">Come work for us. '
             "The compensation is in the <b>real world</b>.</body>"
         ),
         quote_text=(""),
         expected_html=(
-            "<body>ReplyOwl here with the following message:<br/><br/>"
-            "Bacon ipsum dolor amet cupim occaecat ullamco "
+            '<body class="custom">ReplyOwl here with the following message:'
+            "<br/><br/>Bacon ipsum dolor amet cupim occaecat ullamco "
             "beef pork loin ham hock pastrami irure "
             "in excepteur shankle adipisicing corned beef"
             "<div>Four score and a few fortnights ago, someone opined:"

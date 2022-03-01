@@ -106,7 +106,7 @@ class ReplyOwl:
         bq = soup.new_tag(
             "blockquote", type="cite", style=self.blockquote_style
         )
-        soup.body.wrap(bq).wrap(soup.new_tag("body"))
+        soup.body.wrap(bq).wrap(soup.new_tag("body", **soup.body.attrs))
         soup.body.body.unwrap()
         new_div = soup.new_tag("div")
         new_div.string = quote_attribution or ""
