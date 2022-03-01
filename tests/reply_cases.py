@@ -218,7 +218,7 @@ class ReplyCases:
         ),
         expected_text=(
             "I got your message but you didn't have anything to say.  \n  \n"
-            "Check out this site: https://example.com (https://example.com)\n"
+            "Check out this site: https://example.com\n"
         ),
         quote_attribution=("Earlier you wrote something like:"),
     )

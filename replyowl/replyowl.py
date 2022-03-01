@@ -72,6 +72,8 @@ class ReplyOwl:
             link_text = a_tag.text
             link_target = a_tag["href"]
             link_str = f"{link_text} ({link_target})"
+            if link_text.strip() == link_target:
+                link_str = link_text
             a_tag.replace_with(link_str)
         text = self.html2text.handle(str(soup))
         text = text.replace(r"\-", "-")
