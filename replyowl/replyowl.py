@@ -13,7 +13,7 @@ BLOCKQUOTE_STYLE = " ".join(
 )
 BS_PARSER = "html.parser"
 HTML_TEMPLATE = (
-    "<!DOCTYPE html>\n" "<html><head><title></title></head><body>{html}</body>"
+    "<!DOCTYPE html><html><head><title></title></head><body>{html}</body>"
 )
 
 

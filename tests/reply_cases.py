@@ -33,7 +33,7 @@ class ReplyCases:
         quote_html="",
         quote_text="",
         expected_html=(
-            "<!DOCTYPE html>\n\n"
+            "<!DOCTYPE html>\n"
             "<html><head><title></title></head><body></body></html>"
         ),
         expected_text="\n",
@@ -69,7 +69,7 @@ class ReplyCases:
             'Look at the camera... Ready... Say, "fuzzy pickles."'
         ),
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "<!DOCTYPE html>\n<html><head><title></title></head><body>"
             "The year is 199X. A meteorite has fallen in\n"
             '<b><a href="https://earthbound.fandom.com/wiki/Onett">'
             "Onett</a></b>.<br/>\n<br/>\nWatch out for:<br/>\n<ul>\n"
@@ -113,7 +113,7 @@ class ReplyCases:
         ),
         quote_text=(""),
         expected_html=(
-            "<!DOCTYPE html>\n\n"
+            "<!DOCTYPE html>\n"
             "<html><head><title></title></head><body>"
             "ReplyOwl here with the following message:<br/><br/>"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
@@ -151,7 +151,7 @@ class ReplyCases:
         ),
         quote_text=None,
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "<!DOCTYPE html>\n<html><head><title></title></head><body>"
             "Your original message only had <b>HTML</b>."
             "<div>At midnight, the narwhal baconed:<br/>"
             '</div><blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
@@ -179,7 +179,7 @@ class ReplyCases:
             "- bacon\n- ipsum\n\nhttps://example.net"
         ),
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "<!DOCTYPE html>\n<html><head><title></title></head><body>"
             "Your original message only had <b>plain text</b>."
             "<div>While a tree was falling in the woods, you said:<br/>"
             '</div><blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
@@ -210,7 +210,7 @@ class ReplyCases:
         quote_html=None,
         quote_text=None,
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "<!DOCTYPE html>\n<html><head><title></title></head><body>"
             "I got your message but you didn't have anything to say."
             "<br/><br/>Check out this site: "
             '<a href="https://example.com">https://example.com</a>'
@@ -229,7 +229,7 @@ class ReplyCases:
         quote_html="<b>Bacon ipsum</b> dolor amet capicola cupidatat.",
         quote_text="Bacon ipsum dolor amet filet mignon in minim.",
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head><body>"
+            "<!DOCTYPE html>\n<html><head><title></title></head><body>"
             "I'm taking credit for your email.<div><br/></div>"
             '<blockquote style="margin-left: 0.8ex; padding-left: 2ex; '
             'border-left: 2px solid #aaa; border-radius: 8px;" type="cite">'
