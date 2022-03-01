@@ -1,6 +1,6 @@
-# replyowl
+# replyowl: Email reply body generator for HTML and text
 
-Email reply body generator for HTML and text
+replyowl is in initial development.
 
 ## Development
 

@@ -12,7 +12,10 @@ readme = "README.md"
 classifiers = [
     "Development Status :: 1 - Planning",
     "Operating System :: OS Independent",
+    "Topic :: Communications :: Email",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Typing :: Typed",
 ]
 
 [tool.poetry.dependencies]
