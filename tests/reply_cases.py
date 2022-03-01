@@ -121,6 +121,7 @@ class ReplyCases:
             "in excepteur shankle adipisicing corned beef\n\n"
             "----\n\n"
             "Four score and a few fortnights ago, someone opined:\n\n"
+            "> Come work for us. The compensation is in the **real world**.\n"
             "> "
         ),
         reply_attribution=(
@@ -140,7 +141,7 @@ class ReplyCases:
             'border-left: 2px solid #aaa; border-radius: 8px;" '
             'type="cite"></blockquote></body></html>'
         ),
-        expected_text="",
+        expected_text="\n\n----\n\n\n> ",
         reply_attribution="",
     )
 
