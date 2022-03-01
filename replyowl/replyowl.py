@@ -74,13 +74,12 @@ class ReplyOwl:
         text = text.replace(r"\-", "-")
         return text
 
-    def _init_html(self, quote_html: Optional[str]) -> Any:
-        if quote_html:
-            soup = BeautifulSoup(quote_html, self.bs_parser)
-            if soup.body:
-                return soup
+    def _init_html(self, quote_html: str) -> Any:
+        soup = BeautifulSoup(quote_html, self.bs_parser)
+        if soup.body:
+            return soup
         return BeautifulSoup(
-            self.html_template.replace("{html}", quote_html or ""),
+            self.html_template.replace("{html}", quote_html),
             self.bs_parser,
         )
 
@@ -90,6 +89,13 @@ class ReplyOwl:
         quote_html: Optional[str],
         quote_attribution: Optional[str],
     ) -> str:
+        if not quote_html:
+            return str(
+                BeautifulSoup(
+                    self.html_template.replace("{html}", content),
+                    self.bs_parser,
+                )
+            )
         soup = self._init_html(quote_html)
         tmpl = BeautifulSoup(content, self.bs_parser)
         bq = soup.new_tag(
@@ -110,15 +116,19 @@ class ReplyOwl:
         quote_text: Optional[str],
         quote_attribution: Optional[str],
     ) -> str:
-        text = (
-            self._convert_html_to_text(content)
-            + self.linesep
-            + "----"
-            + self.linesep * 2
-            + (quote_attribution or "")
-            + self.linesep * 2
-            + self.linesep.join(
-                [f"> {t}" for t in (quote_text or str()).split(self.linesep)]
+        text = self._convert_html_to_text(content)
+        if quote_text:
+            text += (
+                self.linesep
+                + "----"
+                + self.linesep * 2
+                + (quote_attribution or "")
+                + self.linesep * 2
+                + self.linesep.join(
+                    [
+                        f"> {t}"
+                        for t in (quote_text or str()).split(self.linesep)
+                    ]
+                )
             )
-        )
         return text.replace(self.linesep * 3, self.linesep * 2)

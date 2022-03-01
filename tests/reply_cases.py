@@ -27,8 +27,8 @@ class ReplyCaseParams:
 
 
 class ReplyCases:
-    NO_BODY_TAG = ReplyCaseParams(
-        id="html_without_body_tag",
+    HTML_QUOTE_WITHOUT_BODY_TAG = ReplyCaseParams(
+        id="html_quote_without_body_tag",
         reply_template=(
             "The year is 199X. A meteorite has fallen in\n"
             '<b><a href="https://earthbound.fandom.com/wiki/Onett">'
@@ -86,8 +86,8 @@ class ReplyCases:
         reply_attribution=("At some point, the camera man appeared and said:"),
     )
 
-    BODY_TAG_ONLY = ReplyCaseParams(
-        id="html_with_body_tag_only",
+    HTML_QUOTE_WITH_BODY_TAG_ONLY = ReplyCaseParams(
+        id="html_quote_with_body_tag_only",
         reply_template=(
             "Waffles here with the following message:<br /><br />"
             "Bacon ipsum dolor amet cupim occaecat ullamco "
@@ -129,19 +129,16 @@ class ReplyCases:
         ),
     )
 
-    BLANK_MESSAGE = ReplyCaseParams(
-        id="empty_message",
+    ALL_BLANK_INPUTS = ReplyCaseParams(
+        id="all_blank_inputs",
         reply_template="",
         received_html="",
         received_text="",
         expected_html=(
-            "<!DOCTYPE html>\n\n<html><head><title></title></head>"
-            "<body><div><br/></div><blockquote "
-            'style="margin-left: 0.8ex; padding-left: 2ex; '
-            'border-left: 2px solid #aaa; border-radius: 8px;" '
-            'type="cite"></blockquote></body></html>'
+            "<!DOCTYPE html>\n\n"
+            "<html><head><title></title></head><body></body></html>"
         ),
-        expected_text="\n\n----\n\n\n> ",
+        expected_text="\n",
         reply_attribution="",
     )
 
@@ -160,9 +157,9 @@ class ReplyCases:
         ids: List[str] = []
         argvalues: List[Any] = []
         for reply_case in [
-            cls.NO_BODY_TAG,
-            cls.BODY_TAG_ONLY,
-            cls.BLANK_MESSAGE,
+            cls.HTML_QUOTE_WITHOUT_BODY_TAG,
+            cls.HTML_QUOTE_WITH_BODY_TAG_ONLY,
+            cls.ALL_BLANK_INPUTS,
         ]:
             ids.append(reply_case.id)
             argvalues.append(
