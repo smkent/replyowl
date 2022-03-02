@@ -9,6 +9,7 @@ description = "Email reply body generator for HTML and text"
 license = "GPL-3.0-or-later"
 authors = ["Stephen Kent <smkent@smkent.net>"]
 readme = "README.md"
+repository = "https://github.com/smkent/replyowl"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Operating System :: OS Independent",
