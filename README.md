@@ -2,8 +2,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/replyowl)][pypi]
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/replyowl)][pypi]
-[![Build](https://img.shields.io/github/checks-status/smkent/replyowl/master?label=build)][gh-actions]
-[![codecov](https://codecov.io/gh/smkent/replyowl/branch/master/graph/badge.svg)][codecov]
+[![Build](https://img.shields.io/github/checks-status/smkent/replyowl/main?label=build)][gh-actions]
+[![codecov](https://codecov.io/gh/smkent/replyowl/branch/main/graph/badge.svg)][codecov]
 [![GitHub stars](https://img.shields.io/github/stars/smkent/replyowl?style=social)][repo]
 
 [![replyowl][logo]](#)
@@ -158,8 +158,8 @@ Created from [smkent/cookie-python][cookie-python] using
 [codecov]: https://codecov.io/gh/smkent/replyowl
 [cookie-python]: https://github.com/smkent/cookie-python
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
-[gh-actions]: https://github.com/smkent/replyowl/actions?query=branch%3Amaster
-[logo]: https://raw.github.com/smkent/replyowl/master/img/replyowl.png
+[gh-actions]: https://github.com/smkent/replyowl/actions?query=branch%3Amain
+[logo]: https://raw.github.com/smkent/replyowl/main/img/replyowl.png
 [poetry]: https://python-poetry.org/docs/#installation
 [pypi]: https://pypi.org/project/replyowl/
 [replyowl-pypi]: https://pypi.org/project/replyowl/
