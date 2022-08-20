@@ -55,7 +55,7 @@ jobs:
           fail_ci_if_error: true
 
   publish:
-    name: Publish package for ${{ github.ref }}
+    name: Publish package for ${{ github.ref_name }}
     needs: test
 
     # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
