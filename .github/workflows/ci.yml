@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🐍 Set up Python and Poetry
-        uses: .github/workflows/actions/bootstrap
+        uses: ./.github/workflows/actions/bootstrap
 
       - name: 🔥 Test
         run: poetry run poe test
@@ -65,7 +65,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🐍 Set up Python and Poetry
-        uses: .github/workflows/actions/bootstrap
+        uses: ./.github/workflows/actions/bootstrap
 
       - name: 📦 Build package
         if: env.ENABLE_PYPI_PUBLISH
