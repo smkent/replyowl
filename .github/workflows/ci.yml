@@ -33,19 +33,8 @@ jobs:
       - name: 💾 Check out repository
         uses: actions/checkout@v3
 
-      - name: ✨ Install Poetry
-        run: pip install poetry==${{ matrix.poetry-version }}
-
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: poetry
-
-      - name: 🛠️ Install dependencies
-        run: |
-          pip install poetry-dynamic-versioning
-          poetry install
+      - name: 🐍 Set up Python and Poetry
+        uses: .github/workflows/actions/bootstrap
 
       - name: 🔥 Test
         run: poetry run poe test
@@ -75,19 +64,8 @@ jobs:
       - name: 💾 Check out repository
         uses: actions/checkout@v3
 
-      - name: ✨ Install Poetry
-        run: pip install poetry==${{ env.RELEASE_POETRY_VERSION }}
-
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.RELEASE_PYTHON_VERSION }}
-          cache: poetry
-
-      - name: 🛠️ Install dependencies
-        run: |
-          pip install poetry-dynamic-versioning
-          poetry install
+      - name: 🐍 Set up Python and Poetry
+        uses: .github/workflows/actions/bootstrap
 
       - name: 📦 Build package
         if: env.ENABLE_PYPI_PUBLISH

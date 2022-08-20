@@ -1,0 +1,17 @@
+name: Install Python and Poetry
+runs:
+  using: composite
+  steps:
+    - name: ✨ Install Poetry
+      run: pip install poetry==${{ matrix.poetry-version }}
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: poetry
+
+    - name: 🛠️ Install dependencies
+      run: |
+        pip install poetry-dynamic-versioning
+        poetry install
