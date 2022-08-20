@@ -1,5 +1,5 @@
 ---
-name: CI
+name: CI/CD
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-test-publish:
+  ci:
     name: Python ${{ matrix.python-version }}, Poetry ${{ matrix.poetry-version }}
     runs-on: ubuntu-latest
     env:
@@ -59,6 +59,32 @@ jobs:
         with:
           fail_ci_if_error: true
 
+  cd:
+    name: Publish package for ${{ github.ref }}
+    needs: ci
+    runs-on: ubuntu-latest
+    env:
+      ENABLE_PYPI_PUBLISH: false
+      ENABLE_TEST_PYPI_PUBLISH: true
+
+    steps:
+      - name: 💾 Check out repository
+        uses: actions/checkout@v3
+
+      - name: ✨ Install Poetry
+        run: pip install poetry==${{ matrix.poetry-version }}
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+
+      - name: 🛠️ Install dependencies
+        run: |
+          pip install poetry-dynamic-versioning
+          poetry install
+
       - name: 📦 Build package
         if: env.ENABLE_PYPI_PUBLISH
         run: poetry build
@@ -84,5 +110,5 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
 
 concurrency:
-  group: ci-tests-${{ github.ref }}-1
+  group: cicd-tests-${{ github.ref }}-1
   cancel-in-progress: true
