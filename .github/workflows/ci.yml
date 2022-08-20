@@ -1,5 +1,10 @@
 ---
-name: CI
+name: CI/CD
+
+env:
+  ENABLE_PYPI_PUBLISH: true
+  ENABLE_TEST_PYPI_PUBLISH: true
+  ENABLE_COVERAGE: true
 
 on:
   pull_request:
@@ -14,10 +19,6 @@ jobs:
   build-test-publish:
     name: Python ${{ matrix.python-version }}, Poetry ${{ matrix.poetry-version }}
     runs-on: ubuntu-latest
-    env:
-      ENABLE_PYPI_PUBLISH: true
-      ENABLE_TEST_PYPI_PUBLISH: true
-      ENABLE_COVERAGE: true
 
     strategy:
       matrix:
