@@ -1,6 +1,13 @@
 ---
 name: CI/CD
 
+env:
+  ENABLE_PYPI_PUBLISH: false
+  ENABLE_TEST_PYPI_PUBLISH: true
+  ENABLE_COVERAGE: true
+  RELEASE_PYTHON_VERSION: "3.10"
+  RELEASE_POETRY_VERSION: "1.1.14"
+
 on:
   pull_request:
   push:
@@ -11,13 +18,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
-    name: Python ${{ matrix.python-version }}, Poetry ${{ matrix.poetry-version }}
+  test:
+    name: Test with Python ${{ matrix.python-version }}, Poetry ${{ matrix.poetry-version }}
     runs-on: ubuntu-latest
-    env:
-      ENABLE_PYPI_PUBLISH: true
-      ENABLE_TEST_PYPI_PUBLISH: true
-      ENABLE_COVERAGE: true
 
     strategy:
       matrix:
@@ -59,29 +62,26 @@ jobs:
         with:
           fail_ci_if_error: true
 
-  cd:
+  publish:
     name: Publish package for ${{ github.ref }}
-    needs: ci
+    needs: test
 
     # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     if: github.event_name == 'pull_request'
 
     runs-on: ubuntu-latest
-    env:
-      ENABLE_PYPI_PUBLISH: false
-      ENABLE_TEST_PYPI_PUBLISH: true
 
     steps:
       - name: 💾 Check out repository
         uses: actions/checkout@v3
 
       - name: ✨ Install Poetry
-        run: pip install poetry
+        run: pip install poetry==${{ env.RELEASE_POETRY_VERSION }}
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: ${{ env.RELEASE_PYTHON_VERSION }}
           cache: poetry
 
       - name: 🛠️ Install dependencies
