@@ -1,15 +1,24 @@
 name: Install Python and Poetry
+
+inputs:
+  python_version:
+    description: "Python version to install"
+    required: true
+  poetry_version:
+    description: "Poetry version to install"
+    required: true
+
 runs:
   using: composite
   steps:
     - name: ✨ Install Poetry
       shell: bash
-      run: pip install poetry==${{ matrix.poetry-version }}
+      run: pip install poetry==${{ inputs.poetry_version }}
 
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ inputs.python_version }}
         cache: poetry
 
     - name: 🛠️ Install dependencies

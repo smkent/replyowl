@@ -35,6 +35,9 @@ jobs:
 
       - name: 🐍 Set up Python and Poetry
         uses: ./.github/workflows/actions/bootstrap
+        with:
+          python_version: ${{ matrix.python_version }}
+          poetry_version: ${{ matrix.poetry_version }}
 
       - name: 🔥 Test
         run: poetry run poe test
@@ -66,6 +69,9 @@ jobs:
 
       - name: 🐍 Set up Python and Poetry
         uses: ./.github/workflows/actions/bootstrap
+        with:
+          python_version: ${{ env.RELEASE_PYTHON_VERSION }}
+          poetry_version: ${{ env.RELEASE_POETRY_VERSION }}
 
       - name: 📦 Build package
         if: env.ENABLE_PYPI_PUBLISH
