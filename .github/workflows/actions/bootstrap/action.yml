@@ -1,4 +1,4 @@
-name: Install Python and Poetry
+name: Set up Python project with Poetry
 
 inputs:
   python_version:

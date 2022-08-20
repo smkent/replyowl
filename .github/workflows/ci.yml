@@ -33,11 +33,11 @@ jobs:
       - name: 💾 Check out repository
         uses: actions/checkout@v3
 
-      - name: 🐍 Set up Python and Poetry
+      - name: 🐍 Set up Python project with Poetry
         uses: ./.github/workflows/actions/bootstrap
         with:
-          python_version: ${{ matrix.python_version }}
-          poetry_version: ${{ matrix.poetry_version }}
+          python_version: ${{ matrix.python-version }}
+          poetry_version: ${{ matrix.poetry-version }}
 
       - name: 🔥 Test
         run: poetry run poe test
@@ -67,7 +67,7 @@ jobs:
       - name: 💾 Check out repository
         uses: actions/checkout@v3
 
-      - name: 🐍 Set up Python and Poetry
+      - name: 🐍 Set up Python project with Poetry
         uses: ./.github/workflows/actions/bootstrap
         with:
           python_version: ${{ env.RELEASE_PYTHON_VERSION }}
