@@ -3,6 +3,7 @@ runs:
   using: composite
   steps:
     - name: ✨ Install Poetry
+      shell: bash
       run: pip install poetry==${{ matrix.poetry-version }}
 
     - name: 🐍 Set up Python
@@ -12,6 +13,7 @@ runs:
         cache: poetry
 
     - name: 🛠️ Install dependencies
+      shell: bash
       run: |
         pip install poetry-dynamic-versioning
         poetry install
