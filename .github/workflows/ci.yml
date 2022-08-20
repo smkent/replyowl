@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🐍 Set up Python project with Poetry
-        uses: ./.github/workflows/actions/bootstrap
+        uses: ./.github/workflows/actions/python-poetry
         with:
           python_version: ${{ matrix.python-version }}
           poetry_version: ${{ matrix.poetry-version }}
