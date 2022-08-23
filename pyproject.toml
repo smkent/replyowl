@@ -26,6 +26,7 @@ html2text = "^2020.1.16"
 
 [tool.poetry.dev-dependencies]
 black = "*"
+cruft = "*"
 flake8 = "*"
 isort = "*"
 mypy = "*"
@@ -63,6 +64,9 @@ source = ["replyowl"]
 [tool.coverage.report]
 fail_under = 0
 show_missing = true
+
+[tool.cruft]
+skip = [".git"]
 
 [tool.isort]
 atomic = true
