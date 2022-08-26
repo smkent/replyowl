@@ -208,6 +208,21 @@ pycodestyle = ">=2.8.0,<2.9.0"
 pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
+name = "flake8-pyproject"
+version = "0.9.1"
+description = "Runs Flake8 with configuration from pyproject.toml."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Flake8 = "<5"
+TOMLi = "*"
+
+[package.extras]
+test = ["pytest-cov", "pytest"]
+
+[[package]]
 name = "gitdb"
 version = "4.0.9"
 description = "Git Object Database"
@@ -683,7 +698,7 @@ docs = ["towncrier (>=21.3)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-argparse (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "cd9bfc723610ea610c4675ca0a556403e90cbaed51f059a236bf6e391fceca03"
+content-hash = "d976478ff8918b0684750d87c5025a1d0f53f026b9d4bb7006b0cf550485dde4"
 
 [metadata.files]
 arrow = [
@@ -822,6 +837,9 @@ filelock = [
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
+]
+flake8-pyproject = [
+    {file = "flake8_pyproject-0.9.1-py3-none-any.whl", hash = "sha256:e4b6973021ab78aeb2a0ec993a0f990f26e01746728b102db3b212d1e509b43e"},
 ]
 gitdb = [
     {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
