@@ -683,7 +683,7 @@ docs = ["towncrier (>=21.3)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-argparse (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "cd9bfc723610ea610c4675ca0a556403e90cbaed51f059a236bf6e391fceca03"
+content-hash = "79bd9d4aa5b8affca962d027524359e1ca1421b4b561fd428c138aae242fa0ca"
 
 [metadata.files]
 arrow = [
