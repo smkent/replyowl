@@ -47,23 +47,18 @@ class ReplyOwl:
             quote_html = quote_text.replace(self.linesep, "<br />")
         if quote_html and not quote_text:
             quote_text = self._convert_html_to_text(quote_html)
-        html: Optional[str] = None
-        text: Optional[str] = None
-        if make_html:
-            html = self._make_html_reply(
-                content, quote_html, quote_attribution
-            )
-        if make_text:
-            text = self._make_text_reply(
-                content, quote_text, quote_attribution
-            )
-        return text, html
-
-    def _init_html2text(self) -> html2text.HTML2Text:
-        h2t = html2text.HTML2Text()
-        h2t.ul_item_mark = "-"
-        h2t.body_width = 0
-        return h2t
+        return (
+            (
+                self._make_text_reply(content, quote_text, quote_attribution)
+                if make_text
+                else None
+            ),
+            (
+                self._make_html_reply(content, quote_html, quote_attribution)
+                if make_html
+                else None
+            ),
+        )
 
     def _convert_html_to_text(self, html: str) -> str:
         soup = BeautifulSoup(html, self.bs_parser)
@@ -78,6 +73,12 @@ class ReplyOwl:
         text = self.html2text.handle(str(soup))
         text = text.replace(r"\-", "-")
         return text
+
+    def _init_html2text(self) -> html2text.HTML2Text:
+        h2t = html2text.HTML2Text()
+        h2t.ul_item_mark = "-"
+        h2t.body_width = 0
+        return h2t
 
     def _init_html(self, quote_html: str) -> Any:
         soup = BeautifulSoup(quote_html, self.bs_parser)
