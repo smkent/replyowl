@@ -46,7 +46,7 @@ class ReplyOwl:
         if quote_text and not quote_html:
             quote_html = quote_text.replace(self.linesep, "<br />")
         if quote_html and not quote_text:
-            quote_text = self._convert_html_to_text(quote_html)
+            quote_text = self.html_to_text(quote_html)
         return (
             (
                 self._make_text_reply(content, quote_text, quote_attribution)
@@ -60,7 +60,7 @@ class ReplyOwl:
             ),
         )
 
-    def _convert_html_to_text(self, html: str) -> str:
+    def html_to_text(self, html: str) -> str:
         soup = BeautifulSoup(html, self.bs_parser)
         # Replace links
         for a_tag in soup.find_all("a", href=True):
@@ -122,7 +122,7 @@ class ReplyOwl:
         quote_text: Optional[str],
         quote_attribution: Optional[str],
     ) -> str:
-        text = self._convert_html_to_text(content)
+        text = self.html_to_text(content)
         if quote_text:
             text += (
                 self.linesep
