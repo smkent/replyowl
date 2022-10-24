@@ -25,7 +25,7 @@ beautifulsoup4 = "^4.10.0"
 html2text = "^2020.1.16"
 
 [tool.poetry.dev-dependencies]
-bandit = "*"
+bandit = {extras = ["toml"], version = "*"}
 black = "*"
 cruft = "*"
 flake8 = "*"
