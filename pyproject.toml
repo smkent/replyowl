@@ -21,8 +21,8 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-beautifulsoup4 = "^4.10.0"
-html2text = "^2020.1.16"
+beautifulsoup4 = "*"
+html2text = "*"
 
 [tool.poetry.dev-dependencies]
 bandit = {extras = ["toml"], version = "*"}
@@ -40,7 +40,7 @@ pre-commit = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-sugar = "*"
-pytest-github-actions-annotate-failures = "^0.1.7"
+pytest-github-actions-annotate-failures = "*"
 
 [tool.poetry.scripts]
 
