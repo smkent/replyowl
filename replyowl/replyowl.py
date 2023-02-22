@@ -131,10 +131,7 @@ class ReplyOwl:
                 + (quote_attribution or "")
                 + self.linesep * 2
                 + self.linesep.join(
-                    [
-                        f"> {t}"
-                        for t in (quote_text or str()).split(self.linesep)
-                    ]
+                    [f"> {t}" for t in (quote_text or "").split(self.linesep)]
                 )
             )
         return text.replace(self.linesep * 3, self.linesep * 2)
