@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/smkent/cookie-python",
-  "commit": "1e22b05344b902899659cfebf6f66f53ce8425e1",
+  "commit": "b1f4625cbc85bc8144fdf2edf19096df2f734875",
   "context": {
     "cookiecutter": {
       "project_name": "replyowl",
@@ -13,7 +13,8 @@
       "author_name": "Stephen Kent",
       "author_email": "smkent@smkent.net",
       "github_user": "smkent",
-      "_template": "https://github.com/smkent/cookie-python"
+      "_template": "https://github.com/smkent/cookie-python",
+      "_commit": "b1f4625cbc85bc8144fdf2edf19096df2f734875"
     }
   },
   "directory": null,
