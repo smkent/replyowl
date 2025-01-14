@@ -1,4 +1,4 @@
-from typing import Any, Optional, Tuple
+from typing import Any, Optional
 
 import html2text
 from bs4 import BeautifulSoup  # type: ignore
@@ -40,7 +40,7 @@ class ReplyOwl:
         quote_html: Optional[str],
         make_text: bool = True,
         make_html: bool = True,
-    ) -> Tuple[Optional[str], Optional[str]]:
+    ) -> tuple[Optional[str], Optional[str]]:
         if not make_text and not make_html:
             return (None, None)
         if quote_text and not quote_html:
