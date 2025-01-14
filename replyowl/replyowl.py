@@ -40,7 +40,7 @@ class ReplyOwl:
         quote_html: Optional[str],
         make_text: bool = True,
         make_html: bool = True,
-    ) -> Tuple[Optional[str], Optional[str]]:
+    ) -> tuple[Optional[str], Optional[str]]:
         if not make_text and not make_html:
             return (None, None)
         if quote_text and not quote_html:

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Any, Iterable, List, Optional
+from typing import Any, List, Optional
+from collections.abc import Iterable
 
 
 @dataclass
@@ -253,8 +254,8 @@ class ReplyCases:
             "expected_text",
             "quote_attribution",
         ]
-        ids: List[str] = []
-        argvalues: List[Any] = []
+        ids: list[str] = []
+        argvalues: list[Any] = []
         for reply_case in [
             cls.ALL_BLANK_INPUTS,
             cls.HTML_QUOTE_WITHOUT_BODY_TAG,
