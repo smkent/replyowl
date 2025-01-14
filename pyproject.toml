@@ -1,13 +1,12 @@
 [build-system]
-requires = ["poetry-core>=1.2.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=2.0.0,<3.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry.core.masonry.api"
 
-[tool.poetry]
+[project]
 name = "replyowl"
-version = "0.0.0"
 description = "Email reply body generator for HTML and text"
 license = "GPL-3.0-or-later"
-authors = ["Stephen Kent <smkent@smkent.net>"]
+authors = [ { name = "Stephen Kent", email = "smkent@smkent.net" } ]
 readme = "README.md"
 repository = "https://github.com/smkent/replyowl"
 classifiers = [
@@ -18,13 +17,23 @@ classifiers = [
     "Topic :: Text Processing :: Markup :: HTML",
     "Typing :: Typed",
 ]
+requires-python = ">=3.9"
+dynamic = [ "version" ]
+dependencies = [
+    "beautifulsoup4",
+    "html2text",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-beautifulsoup4 = "*"
-html2text = "*"
+[project.scripts]
 
-[tool.poetry.dev-dependencies]
+[tool.poetry]
+requires-poetry = ">=2.0"
+version = "0.0.0"
+
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+
+[tool.poetry.group.dev.dependencies]
 bandit = {extras = ["toml"], version = "*"}
 black = "*"
 cruft = "*"
@@ -41,8 +50,6 @@ pytest = "*"
 pytest-cov = "*"
 pytest-sugar = "*"
 pytest-github-actions-annotate-failures = "*"
-
-[tool.poetry.scripts]
 
 [tool.poetry-dynamic-versioning]
 enable = true

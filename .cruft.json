@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/smkent/cookie-python",
-  "commit": "dee411e1e91b735d5df2ca480c611b21a4d371be",
+  "commit": "1e22b05344b902899659cfebf6f66f53ce8425e1",
   "context": {
     "cookiecutter": {
       "project_name": "replyowl",
