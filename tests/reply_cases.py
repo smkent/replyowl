@@ -1,6 +1,6 @@
-from dataclasses import dataclass
-from typing import Any, Optional
 from collections.abc import Iterable
+from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass
@@ -20,11 +20,11 @@ class ReplyCase:
 class ReplyCaseParams:
     id: str
     content: str
-    quote_html: Optional[str]
-    quote_text: Optional[str]
+    quote_html: str | None
+    quote_text: str | None
     expected_html: str
     expected_text: str
-    quote_attribution: Optional[str]
+    quote_attribution: str | None
 
 
 class ReplyCases:

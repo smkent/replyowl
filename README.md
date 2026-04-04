@@ -1,10 +1,14 @@
-# replyowl: Email reply body generator for HTML and text in Python
+# replyowl
 
-[![PyPI](https://img.shields.io/pypi/v/replyowl)][pypi]
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/replyowl)][pypi]
-[![Build](https://img.shields.io/github/checks-status/smkent/replyowl/main?label=build)][gh-actions]
-[![codecov](https://codecov.io/gh/smkent/replyowl/branch/main/graph/badge.svg)][codecov]
-[![GitHub stars](https://img.shields.io/github/stars/smkent/replyowl?style=social)][repo]
+Email reply body generator for HTML and text in Python
+
+[![License](https://img.shields.io/github/license/smkent/replyowl)](https://github.com/smkent/replyowl/blob/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/replyowl)](https://pypi.org/project/replyowl/)
+[![Python](https://img.shields.io/pypi/pyversions/replyowl)](https://pypi.org/project/replyowl/)
+[![CI](https://github.com/smkent/replyowl/actions/workflows/ci.yaml/badge.svg)](https://github.com/smkent/replyowl/actions/workflows/ci.yaml)
+[![Coverage](https://codecov.io/gh/smkent/replyowl/branch/main/graph/badge.svg)](https://codecov.io/gh/smkent/replyowl)
+[![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?logo=renovatebot)](https://renovatebot.com)
+[![GitHub stars](https://img.shields.io/github/stars/smkent/replyowl?style=social)](https://github.com/smkent/replyowl)
 
 [![replyowl][logo]](#)
 
@@ -15,9 +19,7 @@ email. HTML-to-text conversion is performed with [html2text][html2text].
 
 ## Installation
 
-[replyowl is available on PyPI][pypi]:
-
-```console
+```sh
 pip install replyowl
 ```
 
@@ -142,44 +144,5 @@ print(html)  # (output formatted for readability)
 # </html>
 ```
 
-## Development
-
-### [Poetry][poetry] installation
-
-Via [`pipx`][pipx]:
-
-```console
-pip install pipx
-pipx install poetry
-pipx inject poetry poetry-pre-commit-plugin
-```
-
-Via `pip`:
-
-```console
-pip install poetry
-poetry self add poetry-pre-commit-plugin
-```
-
-### Development tasks
-
-* Setup: `poetry install`
-* Run static checks: `poetry run poe lint` or
-  `poetry run pre-commit run --all-files`
-* Run static checks and tests: `poetry run poe test`
-
----
-
-Created from [smkent/cookie-python][cookie-python] using
-[cookiecutter][cookiecutter]
-
-[codecov]: https://codecov.io/gh/smkent/replyowl
-[cookie-python]: https://github.com/smkent/cookie-python
-[cookiecutter]: https://github.com/cookiecutter/cookiecutter
-[gh-actions]: https://github.com/smkent/replyowl/actions?query=branch%3Amain
 [html2text]: https://github.com/Alir3z4/html2text
 [logo]: https://raw.github.com/smkent/replyowl/main/img/replyowl.png
-[pipx]: https://pypa.github.io/pipx/
-[poetry]: https://python-poetry.org/docs/#installation
-[pypi]: https://pypi.org/project/replyowl/
-[repo]: https://github.com/smkent/replyowl

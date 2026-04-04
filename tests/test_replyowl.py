@@ -6,8 +6,8 @@ from .reply_cases import ReplyCases
 
 
 @pytest.mark.parametrize(**ReplyCases.compose_reply().__dict__)
-@pytest.mark.parametrize("make_html", (True, False), ids=["html", "no_html"])
-@pytest.mark.parametrize("make_text", (True, False), ids=["text", "no_text"])
+@pytest.mark.parametrize("make_html", [True, False], ids=["html", "no_html"])
+@pytest.mark.parametrize("make_text", [True, False], ids=["text", "no_text"])
 def test_compose_reply(
     owl: ReplyOwl,
     content: str,
@@ -16,6 +16,7 @@ def test_compose_reply(
     expected_html: str,
     expected_text: str,
     quote_attribution: str,
+    *,
     make_text: bool,
     make_html: bool,
 ) -> None:
@@ -34,7 +35,7 @@ def test_compose_reply(
 
 
 @pytest.mark.parametrize(
-    ["html", "text"],
+    ("html", "text"),
     [
         ("", "\n"),
         (
