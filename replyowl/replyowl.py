@@ -1,15 +1,13 @@
-from typing import Any, Optional
+from typing import Any
 
 import html2text
-from bs4 import BeautifulSoup  # type: ignore
+from bs4 import BeautifulSoup
 
-BLOCKQUOTE_STYLE = " ".join(
-    [
-        "margin-left: 0.8ex;",
-        "padding-left: 2ex;",
-        "border-left: 2px solid #aaa;",
-        "border-radius: 8px;",
-    ]
+BLOCKQUOTE_STYLE = (
+    "margin-left: 0.8ex;"
+    " padding-left: 2ex;"
+    " border-left: 2px solid #aaa;"
+    " border-radius: 8px;"
 )
 BS_PARSER = "html.parser"
 HTML_TEMPLATE = (
@@ -23,7 +21,7 @@ class ReplyOwl:
         blockquote_style: str = BLOCKQUOTE_STYLE,
         bs_parser: str = BS_PARSER,
         html_template: str = HTML_TEMPLATE,
-        h2t: Optional[html2text.HTML2Text] = None,
+        h2t: html2text.HTML2Text | None = None,
         linesep: str = "\n",
     ) -> None:
         self.blockquote_style = blockquote_style
@@ -35,12 +33,13 @@ class ReplyOwl:
     def compose_reply(
         self,
         content: str,
-        quote_attribution: Optional[str],
-        quote_text: Optional[str],
-        quote_html: Optional[str],
+        quote_attribution: str | None,
+        quote_text: str | None,
+        quote_html: str | None,
+        *,
         make_text: bool = True,
         make_html: bool = True,
-    ) -> tuple[Optional[str], Optional[str]]:
+    ) -> tuple[str | None, str | None]:
         if not make_text and not make_html:
             return (None, None)
         if quote_text and not quote_html:
@@ -71,8 +70,7 @@ class ReplyOwl:
                 link_str = link_text
             a_tag.replace_with(link_str)
         text = self.html2text.handle(str(soup))
-        text = text.replace(r"\-", "-")
-        return text
+        return text.replace(r"\-", "-")
 
     def _init_html2text(self) -> html2text.HTML2Text:
         h2t = html2text.HTML2Text()
@@ -92,8 +90,8 @@ class ReplyOwl:
     def _make_html_reply(
         self,
         content: str,
-        quote_html: Optional[str],
-        quote_attribution: Optional[str],
+        quote_html: str | None,
+        quote_attribution: str | None,
     ) -> str:
         if not quote_html:
             return str(
@@ -119,8 +117,8 @@ class ReplyOwl:
     def _make_text_reply(
         self,
         content: str,
-        quote_text: Optional[str],
-        quote_attribution: Optional[str],
+        quote_text: str | None,
+        quote_attribution: str | None,
     ) -> str:
         text = self.html_to_text(content)
         if quote_text:
