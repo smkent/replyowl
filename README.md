@@ -144,5 +144,10 @@ print(html)  # (output formatted for readability)
 # </html>
 ```
 
+## Project template
+
+This project is generated and maintained with [copier-python][copier-python].
+
+[copier-python]: https://smkent.github.io/copier-python
 [html2text]: https://github.com/Alir3z4/html2text
 [logo]: https://raw.github.com/smkent/replyowl/main/img/replyowl.png

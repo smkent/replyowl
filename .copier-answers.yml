@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: v0.3.0
+_commit: v0.7.0
 _src_path: gh:smkent/copier-python
 copyright_holder: Stephen Kent
 copyright_holder_email: smkent@smkent.net
@@ -15,6 +15,8 @@ project_name: replyowl
 project_slug: replyowl
 project_type: library
 project_visibility: public
+python_version_maximum: No maximum
 python_version_minimum: '3.10'
+template_attribution: true
 user_email: smkent@smkent.net
 user_name: Stephen Kent
