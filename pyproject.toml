@@ -234,6 +234,9 @@ known-first-party = ["replyowl"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ty.src]
+include = ["replyowl/", "tests/"]
+
 [tool.ty.terminal]
 error-on-warning = true
 output-format = "concise"
