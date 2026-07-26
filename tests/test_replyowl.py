@@ -43,8 +43,10 @@ def test_compose_reply(
             "**test here** with some small text\n",
         ),
         (
-            '<a href="https://example.com/">Click <b>here</b></a> '
-            "to see an example",
+            (
+                '<a href="https://example.com/">Click <b>here</b></a> '
+                "to see an example"
+            ),
             "Click here (https://example.com/) to see an example\n",
         ),
     ],
