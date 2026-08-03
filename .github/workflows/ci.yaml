@@ -25,7 +25,7 @@ jobs:
           - '3.14'
     steps:
       - name: 💾 Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 🦀 Set up Python project with uv
         uses: astral-sh/setup-uv@v8.2.0
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 💾 Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -82,7 +82,7 @@ jobs:
       contents: read
     steps:
       - name: 💾 Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
