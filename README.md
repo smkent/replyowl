@@ -2,7 +2,7 @@
 
 Email reply body generator for HTML and text in Python
 
-[![License](https://img.shields.io/github/license/smkent/replyowl)](https://github.com/smkent/replyowl/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/smkent/replyowl)](https://github.com/smkent/replyowl/blob/main/COPYING.LESSER)
 [![PyPI](https://img.shields.io/pypi/v/replyowl)](https://pypi.org/project/replyowl/)
 [![Python](https://img.shields.io/pypi/pyversions/replyowl)](https://pypi.org/project/replyowl/)
 [![CI](https://github.com/smkent/replyowl/actions/workflows/ci.yaml/badge.svg)](https://github.com/smkent/replyowl/actions/workflows/ci.yaml)
@@ -143,6 +143,13 @@ print(html)  # (output formatted for readability)
 #   </body>
 # </html>
 ```
+
+## License
+
+Copyright (C) 2022 Stephen Kent and contributors
+
+Licensed under the GNU Lesser General Public License v3.0 only
+([`LGPL-3.0-only`](https://github.com/smkent/replyowl/blob/main/COPYING.LESSER)).
 
 ## Project template
 
