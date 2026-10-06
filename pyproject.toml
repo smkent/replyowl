@@ -7,7 +7,7 @@ name = "replyowl"
 dynamic = ["version"]
 description = "Email reply body generator for HTML and text in Python"
 readme = "README.md"
-license = "LGPL-3.0-only"
+license = "LGPL-3.0-or-later"
 license-files = ["COPYING", "COPYING.LESSER"]
 requires-python = ">=3.10"
 authors = [{ name = "Stephen Kent", email = "smkent@smkent.net" }]
