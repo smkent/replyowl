@@ -153,8 +153,8 @@ Licensed under the GNU Lesser General Public License v3.0 or later
 
 ## Project template
 
-This project is generated and maintained with [copier-python][copier-python].
+This project is generated and maintained with [copier-project][copier-project].
 
-[copier-python]: https://smkent.github.io/copier-python
+[copier-project]: https://smkent.github.io/copier-project
 [html2text]: https://github.com/Alir3z4/html2text
 [logo]: https://raw.github.com/smkent/replyowl/main/img/replyowl.png
