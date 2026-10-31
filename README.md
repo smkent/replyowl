@@ -153,7 +153,7 @@ Licensed under the GNU Lesser General Public License v3.0 or later
 
 ## Project template
 
-This project is generated and maintained with [copier-project][copier-project].
+This project is based on and maintained with [copier-project][copier-project].
 
 [copier-project]: https://smkent.github.io/copier-project
 [html2text]: https://github.com/Alir3z4/html2text
