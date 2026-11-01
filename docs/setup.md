@@ -56,6 +56,6 @@ need to be stored as secrets.
 [pypi-trusted-publishing]: https://docs.pypi.org/trusted-publishers/
 [renovate]: https://github.com/apps/renovate
 [repo-settings]: https://github.com/smkent/replyowl/settings
-[repo-settings-envs]: https://github.com/smkent/replyowl/settings/environments
 [repo-settings-branches]: https://github.com/smkent/replyowl/settings/branches
+[repo-settings-envs]: https://github.com/smkent/replyowl/settings/environments
 [repo-settings-pages]: https://github.com/smkent/replyowl/settings/pages
