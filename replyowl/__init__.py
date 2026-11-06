@@ -6,7 +6,7 @@ from importlib.metadata import version as import_version
 from .replyowl import ReplyOwl
 
 try:
-    version = import_version(__name__)
+    version = import_version("replyowl")
 except PackageNotFoundError:  # pragma: no cover
     version = "0.0.0"
 
